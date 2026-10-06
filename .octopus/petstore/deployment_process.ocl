@@ -1,0 +1,214 @@
+step "run-a-script" {
+    name = "Run a Script"
+
+    action "run-a-script" {
+        action_type = "Octopus.Script"
+        name = "Run a Script"
+        properties = {
+            Octopus.Action.RunOnServer = "true"
+            Octopus.Action.Script.ScriptBody = "echo 0"
+            Octopus.Action.Script.ScriptSource = "Inline"
+            Octopus.Action.Script.Syntax = "Bash"
+        }
+    }
+
+    action "child-step-1" {
+        action_type = "Octopus.Script"
+        name = "Child step 1"
+        properties = {
+            Octopus.Action.RunOnServer = "true"
+            Octopus.Action.Script.ScriptBody = "echo 0"
+            Octopus.Action.Script.ScriptSource = "Inline"
+            Octopus.Action.Script.Syntax = "Bash"
+        }
+
+        packages "app" {
+            acquisition_location = "Server"
+            feed = "octopus-server-built-in"
+            package_id = "app"
+            properties = {
+                Extract = "True"
+                SelectionMode = "immediate"
+            }
+        }
+    }
+}
+
+step "git-step1" {
+    name = "Git step1"
+    properties = {
+        Octopus.Action.TargetRoles = "db"
+    }
+
+    action {
+        action_type = "Octopus.Script"
+        properties = {
+            Octopus.Action.GitRepository.Source = "External"
+            Octopus.Action.RunOnServer = "false"
+            Octopus.Action.Script.ScriptFileName = "script.sh"
+            Octopus.Action.Script.ScriptSource = "GitRepository"
+        }
+        worker_pool_variable = ""
+
+        git_dependencies {
+            default_branch = "main"
+            git_credential_id = "GitCredentials-1"
+            git_credential_type = "Library"
+            repository_uri = "https://github.com/yangguoif/backpine.git"
+        }
+    }
+}
+
+step "git-step-2" {
+    name = "git step 2"
+    properties = {
+        Octopus.Action.TargetRoles = "db"
+    }
+
+    action {
+        action_type = "Octopus.Script"
+        properties = {
+            Octopus.Action.GitRepository.Source = "External"
+            Octopus.Action.RunOnServer = "false"
+            Octopus.Action.Script.ScriptFileName = "script.sh"
+            Octopus.Action.Script.ScriptSource = "GitRepository"
+        }
+        worker_pool_variable = ""
+
+        git_dependencies {
+            default_branch = "main"
+            git_credential_type = "GitHub"
+            github_connection_id = "GitHubAppConnections-1"
+            repository_uri = "https://github.com/yangguoif/octo-cac3.git"
+        }
+    }
+}
+
+step "script-condition-with-variable" {
+    condition = "Variable"
+    name = "script condition with variable"
+    properties = {
+        Octopus.Action.TargetRoles = "db"
+        Octopus.Step.ConditionVariableExpression = "#{isStepDisabled}"
+    }
+
+    action {
+        action_type = "Octopus.Script"
+        is_disabled = true
+        properties = {
+            Octopus.Action.RunOnServer = "false"
+            Octopus.Action.Script.ScriptBody = "echo 0"
+            Octopus.Action.Script.ScriptSource = "Inline"
+            Octopus.Action.Script.Syntax = "Bash"
+        }
+        worker_pool_variable = ""
+    }
+}
+
+step "git-step-3" {
+    name = "git step 3"
+    properties = {
+        Octopus.Action.TargetRoles = "db"
+    }
+
+    action {
+        action_type = "Octopus.Script"
+        properties = {
+            Octopus.Action.GitRepository.Source = "External"
+            Octopus.Action.RunOnServer = "false"
+            Octopus.Action.Script.ScriptFileName = "script.ts"
+            Octopus.Action.Script.ScriptSource = "GitRepository"
+        }
+        worker_pool_variable = ""
+
+        git_dependencies {
+            default_branch = "main"
+            git_credential_id = "GitCredentials-1"
+            git_credential_type = "Library"
+            repository_uri = "https://github.com/yangguoif/test-gha"
+        }
+    }
+}
+
+step "git-step-4" {
+    name = "git step 4"
+    properties = {
+        Octopus.Action.TargetRoles = "db"
+    }
+
+    action {
+        action_type = "Octopus.Script"
+        properties = {
+            Octopus.Action.GitRepository.Source = "External"
+            Octopus.Action.RunOnServer = "false"
+            Octopus.Action.Script.ScriptFileName = "script.sh"
+            Octopus.Action.Script.ScriptSource = "GitRepository"
+        }
+        worker_pool_variable = ""
+
+        git_dependencies {
+            default_branch = "main"
+            git_credential_id = "GitCredentials-21"
+            git_credential_type = "Library"
+            repository_uri = "https://github.com/yangguoif/test-gha"
+        }
+    }
+}
+
+step "anonymous-step" {
+    name = "anonymous step"
+    properties = {
+        Octopus.Action.TargetRoles = "db"
+    }
+
+    action {
+        action_type = "Octopus.Script"
+        properties = {
+            Octopus.Action.GitRepository.Source = "External"
+            Octopus.Action.RunOnServer = "false"
+            Octopus.Action.Script.ScriptFileName = "script.sh"
+            Octopus.Action.Script.ScriptSource = "GitRepository"
+        }
+        worker_pool_variable = ""
+
+        git_dependencies {
+            default_branch = "main"
+            git_credential_type = "Anonymous"
+            repository_uri = "https://github.com/yangguoif/test-gha"
+        }
+    }
+}
+
+process_template "run-a-process-template" {
+    name = "Run a Process Template"
+    process_template_slug = "first-template"
+    version_mask = "1.X"
+
+    parameter "deploymentTargetParam" {
+        value = "db"
+    }
+}
+
+step "just-anonymous" {
+    name = "just anonymous"
+    properties = {
+        Octopus.Action.TargetRoles = "db"
+    }
+
+    action {
+        action_type = "Octopus.Script"
+        properties = {
+            Octopus.Action.GitRepository.Source = "External"
+            Octopus.Action.RunOnServer = "false"
+            Octopus.Action.Script.ScriptFileName = "script.sh"
+            Octopus.Action.Script.ScriptSource = "GitRepository"
+        }
+        worker_pool_variable = ""
+
+        git_dependencies {
+            default_branch = "main"
+            git_credential_type = "Anonymous"
+            repository_uri = "https://github.com/yangguoif/octo-cac2"
+        }
+    }
+}

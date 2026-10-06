@@ -1,0 +1,3 @@
+variable "isStepDisabled" {
+    value "true" {}
+}

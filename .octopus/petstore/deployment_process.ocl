@@ -212,3 +212,21 @@ step "just-anonymous" {
         }
     }
 }
+
+step "step-based-on-cac-project" {
+    name = "Step based on CaC project"
+    properties = {
+        Octopus.Action.TargetRoles = "db"
+    }
+
+    action {
+        action_type = "Octopus.Script"
+        properties = {
+            Octopus.Action.GitRepository.Source = "Project"
+            Octopus.Action.RunOnServer = "false"
+            Octopus.Action.Script.ScriptFileName = "script.sh"
+            Octopus.Action.Script.ScriptSource = "GitRepository"
+        }
+        worker_pool_variable = ""
+    }
+}

@@ -32,6 +32,28 @@ step "run-a-script" {
             }
         }
     }
+
+    action "external-feed-step" {
+        action_type = "Octopus.Script"
+        name = "external feed step"
+        properties = {
+            Octopus.Action.Package.DownloadOnTentacle = "False"
+            Octopus.Action.Package.FeedId = "test"
+            Octopus.Action.Package.PackageId = "${my-test-external-feed}"
+            Octopus.Action.RunOnServer = "true"
+            Octopus.Action.Script.ScriptFileName = "script.sh"
+            Octopus.Action.Script.ScriptSource = "Package"
+        }
+
+        packages {
+            acquisition_location = "Server"
+            feed = "test"
+            package_id = "${my-test-external-feed}"
+            properties = {
+                SelectionMode = "immediate"
+            }
+        }
+    }
 }
 
 step "git-step1" {

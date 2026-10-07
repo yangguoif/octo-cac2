@@ -230,7 +230,7 @@ step "just-anonymous" {
         git_dependencies {
             default_branch = "main"
             git_credential_type = "Anonymous"
-            repository_uri = "https://github.com/yangguoif/octo-cac2.git"
+            repository_uri = "https://github.com/yangguoif/octo-cac3.git"
         }
     }
 }

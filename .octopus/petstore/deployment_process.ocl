@@ -76,7 +76,7 @@ step "git-step1" {
             default_branch = "main"
             git_credential_id = "GitCredentials-1"
             git_credential_type = "Library"
-            repository_uri = "https://github.com/yangguoif/backpine.git"
+            repository_uri = "https://my.git.host.com/yangguoif/backpine.git"
         }
     }
 }

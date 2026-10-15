@@ -35,6 +35,7 @@ step "run-a-script" {
 
     action "external-feed-step" {
         action_type = "Octopus.Script"
+        is_disabled = true
         name = "external feed step"
         properties = {
             Octopus.Action.Package.DownloadOnTentacle = "False"

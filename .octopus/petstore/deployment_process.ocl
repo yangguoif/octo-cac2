@@ -35,6 +35,7 @@ step "run-a-script" {
 
     action "external-feed-step" {
         action_type = "Octopus.Script"
+        is_disabled = true
         name = "external feed step"
         properties = {
             Octopus.Action.Package.DownloadOnTentacle = "False"
@@ -64,6 +65,7 @@ step "git-step1" {
 
     action {
         action_type = "Octopus.Script"
+        is_disabled = true
         properties = {
             Octopus.Action.GitRepository.Source = "External"
             Octopus.Action.RunOnServer = "false"
@@ -89,6 +91,7 @@ step "git-step-2" {
 
     action {
         action_type = "Octopus.Script"
+        is_disabled = true
         properties = {
             Octopus.Action.GitRepository.Source = "External"
             Octopus.Action.RunOnServer = "false"
@@ -135,6 +138,7 @@ step "git-step-3" {
 
     action {
         action_type = "Octopus.Script"
+        is_disabled = true
         properties = {
             Octopus.Action.GitRepository.Source = "External"
             Octopus.Action.RunOnServer = "false"
@@ -160,6 +164,7 @@ step "git-step-4" {
 
     action {
         action_type = "Octopus.Script"
+        is_disabled = true
         properties = {
             Octopus.Action.GitRepository.Source = "External"
             Octopus.Action.RunOnServer = "false"
@@ -185,6 +190,7 @@ step "anonymous-step" {
 
     action {
         action_type = "Octopus.Script"
+        is_disabled = true
         properties = {
             Octopus.Action.GitRepository.Source = "External"
             Octopus.Action.RunOnServer = "false"
@@ -219,6 +225,7 @@ step "just-anonymous" {
 
     action {
         action_type = "Octopus.Script"
+        is_disabled = true
         properties = {
             Octopus.Action.GitRepository.Source = "External"
             Octopus.Action.RunOnServer = "false"
@@ -243,6 +250,7 @@ step "step-based-on-cac-project" {
 
     action {
         action_type = "Octopus.Script"
+        is_disabled = true
         properties = {
             Octopus.Action.GitRepository.Source = "Project"
             Octopus.Action.RunOnServer = "false"

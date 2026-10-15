@@ -91,6 +91,7 @@ step "git-step-2" {
 
     action {
         action_type = "Octopus.Script"
+        is_disabled = true
         properties = {
             Octopus.Action.GitRepository.Source = "External"
             Octopus.Action.RunOnServer = "false"
@@ -224,6 +225,7 @@ step "just-anonymous" {
 
     action {
         action_type = "Octopus.Script"
+        is_disabled = true
         properties = {
             Octopus.Action.GitRepository.Source = "External"
             Octopus.Action.RunOnServer = "false"

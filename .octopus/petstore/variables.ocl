@@ -9,3 +9,11 @@ variable "testVariable" {
         channel = ["complicated", "default", "ephemeral-environments"]
     }
 }
+
+variable "accountVariable" {
+    type = "AzureAccount"
+
+    value "azure-account" {
+        channel = ["complicated", "default", "ephemeral-environments"]
+    }
+}

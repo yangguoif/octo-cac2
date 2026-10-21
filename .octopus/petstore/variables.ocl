@@ -17,3 +17,11 @@ variable "accountVariable" {
         channel = ["complicated", "default", "ephemeral-environments"]
     }
 }
+
+variable "certVariable" {
+    type = "Certificate"
+
+    value "Certificates-1" {
+        channel = ["complicated", "default", "ephemeral-environments"]
+    }
+}

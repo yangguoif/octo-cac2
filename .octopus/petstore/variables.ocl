@@ -3,7 +3,9 @@ variable "isStepDisabled" {
 }
 
 variable "testVariable" {
-    value "test" {
+    type = "Certificate"
+
+    value "Certificates-1" {
         channel = ["complicated", "default", "ephemeral-environments"]
     }
 }

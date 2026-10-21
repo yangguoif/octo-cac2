@@ -6,7 +6,7 @@ step "run-a-script" {
         name = "Run a Script"
         properties = {
             Octopus.Action.RunOnServer = "true"
-            Octopus.Action.Script.ScriptBody = "echo 0"
+            Octopus.Action.Script.ScriptBody = "echo $(get_octopusvariable \"testVariable\")"
             Octopus.Action.Script.ScriptSource = "Inline"
             Octopus.Action.Script.Syntax = "Bash"
         }

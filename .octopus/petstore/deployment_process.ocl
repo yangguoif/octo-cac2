@@ -274,3 +274,22 @@ step "run-an-azure-script" {
         }
     }
 }
+
+step "import-certificate" {
+    name = "Import Certificate"
+    properties = {
+        Octopus.Action.TargetRoles = "db"
+    }
+
+    action {
+        action_type = "Octopus.Certificate.Import"
+        properties = {
+            Octopus.Action.Certificate.PrivateKeyAccessRules = "[]"
+            Octopus.Action.Certificate.PrivateKeyExportable = "False"
+            Octopus.Action.Certificate.StoreLocation = "LocalMachine"
+            Octopus.Action.Certificate.StoreName = "My"
+            Octopus.Action.Certificate.Variable = "certVariable"
+        }
+        worker_pool_variable = ""
+    }
+}

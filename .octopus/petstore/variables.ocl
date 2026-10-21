@@ -2,7 +2,7 @@ variable "isStepDisabled" {
     value "true" {}
 }
 
-variable "Another variable" {
+variable "testVariable" {
     value "test" {
         channel = ["complicated", "default", "ephemeral-environments"]
     }

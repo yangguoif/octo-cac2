@@ -1,3 +1,17 @@
+step "a-step-on-main-branch" {
+    name = "A step on main branch"
+
+    action {
+        action_type = "Octopus.Script"
+        properties = {
+            Octopus.Action.RunOnServer = "true"
+            Octopus.Action.Script.ScriptBody = "echo 0"
+            Octopus.Action.Script.ScriptSource = "Inline"
+            Octopus.Action.Script.Syntax = "Bash"
+        }
+    }
+}
+
 step "run-a-script" {
     name = "Run a Script"
 
@@ -291,19 +305,5 @@ step "import-certificate" {
             Octopus.Action.Certificate.Variable = "certVariable"
         }
         worker_pool_variable = ""
-    }
-}
-
-step "a-step-on-main-branch" {
-    name = "A step on main branch"
-
-    action {
-        action_type = "Octopus.Script"
-        properties = {
-            Octopus.Action.RunOnServer = "true"
-            Octopus.Action.Script.ScriptBody = "echo 0"
-            Octopus.Action.Script.ScriptSource = "Inline"
-            Octopus.Action.Script.Syntax = "Bash"
-        }
     }
 }

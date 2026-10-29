@@ -3,8 +3,6 @@ cancel_queued_tasks = true
 cancel_running_tasks = true
 default_guided_failure_mode = "EnvironmentDefault"
 description = ""
-environment_scope = "Specified"
-environments = ["staging"]
 
 connectivity_policy {
     allow_deployments_to_no_targets = true
